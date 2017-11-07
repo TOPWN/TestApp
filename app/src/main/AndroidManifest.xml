@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.dfire.danggui.testapp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <application
+        android:name=".TestApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- StickyRecycler -->
+        <activity
+            android:name=".stickyrecyclerview.StickyRecyclerActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="StickyRecycler" />
+        <activity
+            android:name=".couponview.TestCouponViewActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="CouponView" />
+        <activity
+            android:name=".eventbus.TestEventBusSubActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestEventBusSubActivity" />
+        <activity
+            android:name=".eventbus.TestEventBusThirdActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestEventBusSubActivity" />
+        <activity
+            android:name=".clipchildren.TestClipChildrenActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestEventBusSubActivity" />
+        <activity
+            android:name=".dfirenetwork.Test2DfireNetWorkActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestEventBusSubActivity" />
+        <activity
+            android:name=".stateview.InjectActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="InjectActivity" />
+        <activity
+            android:name=".glide.TestGlideActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestGlideActivity" />
+        <activity
+            android:name=".flexboxlayout.TestFlexboxLayoutActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestFlexboxLayout" />
+        <activity
+            android:name=".editfoodnumview.TestEditFoodNumViewActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestEditFoodNumView" />
+        <activity
+            android:name=".annotation.TestAnnotationActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestAnnotationActivity" />
+        <activity
+            android:name=".softkeyboard.TestSoftKeyboardActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestSoftKeyboardActivity" />
+        <activity
+            android:name=".map.TestMapActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="TestMapActivity" />
+        <activity
+            android:name=".customview.StampViewActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="false"
+            android:label="StampViewActivity" />
+    </application>
+
+</manifest>

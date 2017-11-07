@@ -1,0 +1,55 @@
+<resources>
+
+    <declare-styleable name="CouponView">
+        <attr name="cv_semicircle_gap" format="dimension|reference" />
+        <attr name="cv_semicircle_radius" format="dimension|reference" />
+        <attr name="cv_semicircle_color" format="color|reference" />
+        <attr name="cv_dash_line_length" format="dimension|reference" />
+        <attr name="cv_dash_line_gap" format="dimension|reference" />
+        <attr name="cv_dash_line_height" format="dimension|reference" />
+        <attr name="cv_dash_line_color" format="color|reference" />
+        <attr name="cv_is_semicircle_top" format="boolean|reference" />
+        <attr name="cv_is_semicircle_bottom" format="boolean|reference" />
+        <attr name="cv_is_semicircle_left" format="boolean|reference" />
+        <attr name="cv_is_semicircle_right" format="boolean|reference" />
+        <attr name="cv_is_dash_line_top" format="boolean|reference" />
+        <attr name="cv_is_dash_line_bottom" format="boolean|reference" />
+        <attr name="cv_is_dash_line_left" format="boolean|reference" />
+        <attr name="cv_is_dash_line_right" format="boolean|reference" />
+        <attr name="cv_dash_line_margin_top" format="dimension|reference" />
+        <attr name="cv_dash_line_margin_bottom" format="dimension|reference" />
+        <attr name="cv_dash_line_margin_left" format="dimension|reference" />
+        <attr name="cv_dash_line_margin_right" format="dimension|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="StateView">
+        <attr name="emptyResource" format="reference" />
+        <attr name="retryResource" format="reference" />
+        <attr name="loadingResource" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="Module_Menu_EditFoodNumberView">
+        <attr name="module_menu_prefix_image" format="reference" />
+        <attr name="module_menu_left_image" format="reference" />
+        <attr name="module_menu_right_image" format="reference" />
+        <attr name="module_menu_middle_min_value" format="integer" />
+        <attr name="module_menu_middle_max_value" format="integer" />
+        <attr name="module_menu_middle_text_size" format="dimension" />
+        <attr name="module_menu_middle_text_color" format="color" />
+        <attr name="module_menu_middle_hint_color" format="color" />
+        <attr name="module_menu_middle_hint_text" format="reference" />
+        <attr name="module_menu_unit" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SpannedGridLayoutManager">
+        <attr name="android:orientation" />
+        <attr name="spanCount" />
+        <attr name="aspectRatio" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="StampView">
+        <attr name="sv_color" format="color" />
+        <attr name="sv_content_text" format="reference" />
+        <attr name="sv_sub_text" format="reference" />
+    </declare-styleable>
+</resources>

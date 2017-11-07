@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- 主色调 -->
+    <color name="primaryColor">#FFFFFF</color>
+    <!-- 暗色调 -->
+    <color name="primaryDarkColor">#000000</color>
+    <!-- 突出色调 -->
+    <color name="accentColor">#E02200</color>
+    <!-- 系统图标颜色 -->
+    <color name="controlNormalColor">@color/accentColor</color>
+    <!-- 窗口背景颜色 -->
+    <color name="windowBackgroundColor">#F0F0F0</color>
+    <!-- toolbar颜色 -->
+    <color name="toolbarColor">@android:color/transparent</color>
+    <!-- 链接颜色 -->
+    <color name="linkColor">#5db8e2</color>
+    <!--系统默认灰色-->
+    <color name="normalColor">#00000000</color>
+
+    <!-- 主要字体颜色 -->
+    <color name="primaryTextColor">#333333</color>
+    <!-- 次要字体颜色 -->
+    <color name="secondaryTextColor">#666666</color>
+    <!-- 第三字体颜色 -->
+    <color name="tertiaryTextColor">#999999</color>
+    <!-- 突出字体颜色 -->
+    <color name="accentTextColor">#4ABE25</color>
+    <!-- 突出字体反色 -->
+    <color name="accentInverseTextColor">#FFFFFF</color>
+    <!-- 提示字体颜色 -->
+    <color name="hintTextColor">#d7d7d7</color>
+    <!-- 输入字体颜色 -->
+    <color name="inputTextColor">#414141</color>
+    <!-- 线条颜色 -->
+    <color name="lineColor">#d7d7d7</color>
+    <!-- 线条颜色 -->
+    <color name="lineColorLight">#f2f2f2</color>
+    <!--下拉刷新底色-->
+    <color name="refreshBackgroundColor">#414141</color>
+    <!--dialog背景色-->
+    <color name="dialogBackgroundColor">#1b1b1b</color>
+
+    <!-- 其他 -->
+    <color name="image_stroke">#F2F2F2</color>
+    <color name="title_popup_menu">#4ABE25</color>
+    <color name="title_input">#5E5E5E</color>
+    <color name="gray_sliver_top_solid">#dcdcdc</color>
+    <color name="gray_bg">#f2f2f2</color>
+    <color name="default_divide">#ffe0e0e0</color>
+
+    <!-- 普通check按钮 -->
+    <color name="bg_btn_normal">@color/primaryColor</color>
+    <color name="bg_btn_stroke">#d7d7d7</color>
+    <color name="bg_btn_checked">@color/bg_btn_stroke</color>
+
+    <!-- toolbar使用的按钮颜色 -->
+    <color name="bg_btn_inverse_normal">@color/tertiaryTextColor</color>
+    <color name="bg_btn_inverse_stroke">@color/bg_btn_normal</color>
+    <color name="bg_btn_inverse_checked">@color/bg_btn_normal</color>
+
+    <color name="chart_color1">#eeca6a</color>
+    <color name="chart_color2">#f98e78</color>
+    <color name="chart_color3">#bfa1d7</color>
+    <color name="chart_color4">#83d2fd</color>
+    <color name="chart_color5">#77caa9</color>
+
+    <!--线框-->
+    <color name="bright_green">#97fa5f</color>
+    <color name="bright_white">#caffad</color>
+
+    <!--筛选-->
+    <color name="drop_down_selected">#7B1FA2</color>
+    <color name="drop_down_unselected">#111111</color>
+    <color name="filter_title_black">#000000</color>
+    <color name="filter_title_content">#C9C9C9</color>
+
+    <!--背景颜色-->
+    <color name="white">#FFFFFF</color>
+    <!--CouponView锯齿半圆颜色-->
+    <color name="cv_semicircle_color">#2D190E</color>
+    <!--Tablayout背景色-->
+    <color name="tablayout_bg_color">#2A2019</color>
+    <color name="common_blue">#006FCE</color>
+    <!--拒绝按钮的灰色背景-->
+    <color name="reject_gray_text_bg">#31302F</color>
+    <color name="seat_no_order_background">#342B26</color>
+    <color name="primaryColor70">#70FFFFFF</color>
+
+    <!--其他添加颜色-->
+    <color name="red">#FF3B30</color>
+    <color name="filter_item_check">#50FFFFFF</color>
+    <color name="common_divider_line">#929292</color>
+    <color name="trans_white">#88FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="trans_black">#55000000</color>
+    <color name="gray">#e7e7e7</color>
+    <color name="common_front_green">#00C297</color>
+    <color name="common_front_black">#333333</color>
+    <color name="common_front_gery">#999999</color>
+    <color name="common_button_red">@color/accentColor</color>
+    <color name="common_button_red_unclick">#77E02200</color>
+    <color name="common_value_text_color">#666666</color>
+    <color name="search_widget_bg">#4D000000</color>
+    <color name="gray_round_rec_bg">#99999999</color>
+    <color name="instance_list_item_bg">#E6FFFFFF</color>
+    <color name="gray_separated_line">#D8D8D8</color>
+
+    <!--应用内所有recyclerview/listview item背景色-->
+    <color name="list_item_bg">#FFFFFFFF</color>
+    <!--关注桌位背景色-->
+    <color name="atten_desk_bg_color">#716864</color>
+    <!--半透明的关注桌位背景色-->
+    <color name="half_tran_atten_desk_bg_color">#80716864</color>
+
+    <!--订单下拉筛选-->
+    <color name="filter_button_color">#E02200</color>
+    <color name="filter_text_color">#666666</color>
+    <color name="filter_text_stroke">#999999</color>
+    <color name="filter_title">#333333</color>
+    <color name="filter_text_bg">#F3A799</color>
+
+    <!--订单列表-->
+    <color name="order_list_green">#00C297</color>
+    <color name="order_list_orange">#F68023</color>
+    <color name="order_list_red">#E02200</color>
+
+    <!--tab-->
+    <color name="tab_bg">#2A2019</color>
+    <!--异常提示浮动框-->
+    <color name="mistake_toast_bg">#FFD6D6</color>
+    <!--圆形头像-->
+    <color name="round_head_riv_border_color">#333333</color>
+    <!--半透明颜色-->
+    <color name="half_tran_bg_color">#80716864</color>
+    <color name="half_tran_edit">#50716864</color>
+    <color name="qr_code">#30D8D8D8</color>
+    <color name="light_blue">#037AD4</color>
+    <color name="color_f5">#F5F5F5</color>
+    <color name="ripple_press">#e6e6e6</color>
+    <color name="softkeyboard_divider">#bdbdbd</color>
+    <color name="stamp_color">#C297</color>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/show_empty"
+        android:title="@string/InflateEmpty" />
+
+    <item android:id="@+id/show_retry"
+        android:title="@string/InflateRetry" />
+
+    <item android:id="@+id/show_loading"
+        android:title="@string/InflateLoading" />
+
+    <item android:id="@+id/show_content"
+        android:title="@string/ShowContent"/>
+
+</menu>

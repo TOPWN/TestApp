@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.dfire.danggui.testapp"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            if (signingConfigs.releaseConfig != null) {
+//                signingConfig signingConfigs.releaseConfig
+//            }
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('url-config.properties').newDataInputStream())
+    productFlavors {
+        dev {
+            buildConfigField("String", "CLOUD_CASH_API", properties.getProperty("dev_cloudcash_api"))
+        }
+
+        pre {
+            buildConfigField("String", "CLOUD_CASH_API", properties.getProperty("pre_cloudcash_api"))
+            buildConfigField("String", "APP_KEY", properties.getProperty("DFIRE_APP_KEY"))
+            buildConfigField("String", "APP_SECRET", properties.getProperty("DFIRE_APP_SECRET"))
+        }
+        rel {
+            buildConfigField("String", "CLOUD_CASH_API", properties.getProperty("release_cloudcash_api"))
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile "com.android.support:recyclerview-v7:${rootProject.supportLibsVersion}"
+
+    //View Injection:
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    //RecyclerView
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.6.6'
+//    compile 'org.zakariya.stickyheaders:stickyheaders:0.7.6'
+
+    compile 'org.greenrobot:eventbus:3.0.0'
+    testCompile 'junit:junit:4.12'
+
+    //Log
+    compile 'com.orhanobut:logger:1.15'
+
+    //2dire network
+    compile 'com.dfire.mobile.network:network-service:2.2.5'
+    compile 'com.dfire.mobile.util:gson-mapper:1.0.0'//(optional)
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    //RxJava
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.2.4'
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
+    devCompile project(path: ':lib.module', configuration: 'devRelease')
+    relCompile project(path: ':lib.module', configuration: 'relRelease')
+
+    compile 'com.google.android:flexbox:0.2.6'
+
+    annotationProcessor project(':compiler')
+    compile project(':annotation')
+}

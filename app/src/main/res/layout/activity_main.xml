@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+
+        tools:context="com.dfire.danggui.testapp.MainActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!" />
+
+        <Button
+            android:id="@+id/btStickyRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyRecycler" />
+
+        <Button
+            android:id="@+id/btCouponView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CouponView" />
+
+        <Button
+            android:id="@+id/btTestEventBus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestEventBus" />
+
+        <Button
+            android:id="@+id/button_clipchildren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestClipChildren" />
+
+        <Button
+            android:id="@+id/button_test_dfire_network"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestDfireNetWork" />
+
+        <Button
+            android:id="@+id/button_test_stateview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestStateView" />
+
+        <Button
+            android:id="@+id/button_test_glide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestGlide" />
+
+        <Button
+            android:id="@+id/button_flexboxlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestFlexboxlayout" />
+
+        <Button
+            android:id="@+id/button_EditFoodNumView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestEditFoodNumView" />
+
+        <Button
+            android:id="@+id/button_TestAnnotationActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestAnnotationActivity" />
+
+        <Button
+            android:id="@+id/button_TestSoftKeybordActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestSoftKeyboardActivity" />
+
+        <Button
+            android:id="@+id/button_StampViewActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StampViewActivity" />
+    </LinearLayout>
+</ScrollView>

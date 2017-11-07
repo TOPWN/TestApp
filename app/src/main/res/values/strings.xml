@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="InflateEmpty">show empty</string>
+    <string name="InflateRetry">show retry</string>
+    <string name="InflateLoading">show loading</string>
+    <string name="ShowContent">show content</string>
+    <string name="text_empty">No data!</string>
+    <string name="text_retry">Something went wrong!\n\nTap to retry</string>
+
+    <string name="module_menu_food_unit">份</string>
+    <string name="softkeyboard_delete">删除</string>
+    <string name="softkeyboard_confirm">去收款</string>
+    <string name="time">12:30</string>
+</resources>
