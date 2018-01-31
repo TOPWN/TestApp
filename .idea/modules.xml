@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/annotation/annotation.iml" filepath="$PROJECT_DIR$/annotation/annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/compiler/compiler.iml" filepath="$PROJECT_DIR$/compiler/compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customgradleplugin/customgradleplugin.iml" filepath="$PROJECT_DIR$/customgradleplugin/customgradleplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib.module/lib.module.iml" filepath="$PROJECT_DIR$/lib.module/lib.module.iml" />
     </modules>
   </component>

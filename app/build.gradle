@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'test.gradleplugin'
 
 android {
     compileSdkVersion 25
@@ -68,8 +69,8 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
 
     //2dire network
-    compile 'com.dfire.mobile.network:network-service:2.2.5'
-    compile 'com.dfire.mobile.util:gson-mapper:1.0.0'//(optional)
+//    compile 'com.dfire.mobile.network:network-service:2.2.5'
+//    compile 'com.dfire.mobile.util:gson-mapper:1.0.0'//(optional)
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 
