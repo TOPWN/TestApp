@@ -11,7 +11,6 @@ import com.dfire.danggui.testapp.annotation.TestAnnotationActivity;
 import com.dfire.danggui.testapp.clipchildren.TestClipChildrenActivity;
 import com.dfire.danggui.testapp.couponview.TestCouponViewActivity;
 import com.dfire.danggui.testapp.customview.StampViewActivity;
-import com.dfire.danggui.testapp.dfirenetwork.Test2DfireNetWorkActivity;
 import com.dfire.danggui.testapp.editfoodnumview.TestEditFoodNumViewActivity;
 import com.dfire.danggui.testapp.eventbus.TestEventBusSubActivity;
 import com.dfire.danggui.testapp.flexboxlayout.TestFlexboxLayoutActivity;
@@ -78,10 +77,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_clipchildren:
                 Intent intent4 = new Intent(this, TestClipChildrenActivity.class);
                 startActivity(intent4);
-                break;
-            case R.id.button_test_dfire_network:
-                Intent intent5 = new Intent(this, Test2DfireNetWorkActivity.class);
-                startActivity(intent5);
                 break;
             case R.id.button_test_stateview:
                 Intent intent6 = new Intent(this, InjectActivity.class);

@@ -12,19 +12,15 @@ buildscript {
         classpath 'com.dfire.danggui:customgradleplugin:1.0.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
-        maven { url "https://jitpack.io" }
-//        maven {
-//            url "http://nexus.2dfire-dev.com/content/groups/public-snapshots/"
-//        }
-//        maven {
-//            url "http://nexus.2dfire-dev.com/content/groups/public/"
-//        }
+        maven { url 'https://jitpack.io' }
     }
 }
 

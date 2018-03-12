@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'test.gradleplugin'
+//apply plugin: 'test.gradleplugin'
 
 android {
     compileSdkVersion 25
@@ -88,4 +88,23 @@ dependencies {
 
     annotationProcessor project(':compiler')
     compile project(':annotation')
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.contains('AndroidTest')) {
+        task.enabled = false
+    }
+}
+
+afterEvaluate {
+    println 'test afterEvaluate'
+    android.applicationVariants.each { variant ->
+        def dx = tasks.findByName("merge${variant.name.capitalize()}Resources")
+        def hello = "hello${variant.name.capitalize()}"
+        task(hello) << {
+            println "hello"
+        }
+        tasks.findByName(hello).dependsOn dx.taskDependencies.getDependencies(dx)
+        dx.dependsOn tasks.findByName(hello)
+    }
 }

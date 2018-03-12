@@ -2,7 +2,6 @@ package com.dfire.danggui.testapp;
 
 import android.app.Application;
 
-import com.dfire.danggui.testapp.dfirenetwork.CcdNetWorkConfig;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.Settings;
@@ -35,6 +34,5 @@ public class TestApplication extends Application {
     }
 
     private void initNetWork() {
-        CcdNetWorkConfig.initNetWork();
     }
 }
