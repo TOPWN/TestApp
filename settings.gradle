@@ -1,1 +1,1 @@
-include ':app', ':lib.module', ':annotation', ':compiler', ':customgradleplugin'
+include ':app', ':lib.module', ':annotation', ':compiler', ':uploadArchives'

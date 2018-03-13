@@ -11,8 +11,8 @@
             <option value="$PROJECT_DIR$/annotation" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/compiler" />
-            <option value="$PROJECT_DIR$/customgradleplugin" />
             <option value="$PROJECT_DIR$/lib.module" />
+            <option value="$PROJECT_DIR$/uploadArchives" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
