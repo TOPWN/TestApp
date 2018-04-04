@@ -41,6 +41,7 @@ public class UploadArchivesPlugin implements Plugin<Project> {
         Set<Map.Entry<Object, Object>> entrys = props.entrySet()
         entrys.each { entry ->
             String entryKey = entry.getKey().toString()
+            println "${entryKey}"
             if (entryKey.contains(UPLOAD_KEY_PREFIX) && Boolean.valueOf(entry.getValue())) {
                 putProjectUploadTask(entryKey)
             }

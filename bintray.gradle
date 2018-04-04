@@ -15,7 +15,7 @@ def inception = '2016'
 
 def username = 'topwarning'
 group = 'com.topwarning'
-version = '1.0.0'
+version = '1.2.0'
 //def versionName= 1.0.1
 //def archivesBasename = 'uploadArchives'
 install {
