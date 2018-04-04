@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/compiler/compiler.iml" filepath="$PROJECT_DIR$/compiler/compiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib.module/lib.module.iml" filepath="$PROJECT_DIR$/lib.module/lib.module.iml" />
-      <module fileurl="file://$PROJECT_DIR$/uploadArchives/customgradleplugin.iml" filepath="$PROJECT_DIR$/uploadArchives/customgradleplugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uploadArchives/uploadArchives.iml" filepath="$PROJECT_DIR$/uploadArchives/uploadArchives.iml" />
     </modules>
   </component>
 </project>

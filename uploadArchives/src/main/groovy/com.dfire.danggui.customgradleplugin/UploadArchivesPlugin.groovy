@@ -7,113 +7,85 @@ import org.gradle.api.Task
 
 public class UploadArchivesPlugin implements Plugin<Project> {
 
-    public static final String UPDATE_PROPERTY_NAME = 'update.properties'
+    public static final String UPDATE_PROPERTY_NAME = 'config.properties'
+    public static final String UPLOAD_KEY_PREFIX = 'UPLOAD_TO_NEXUS'
     Project mProject
     Set<Project> allProject
+    Task uploadTask
+    Queue<Task> uploadTaskQueue
 
     void apply(Project project) {
         mProject = project
-        ArrayList<Task> firstLevelUpdatePro = new ArrayList<>()
-        ArrayList<Task> secondLevelUpdatePro = new ArrayList<>()
-        ArrayList thirdLevelUpdatePro = new ArrayList<>()
-        ArrayList<Task> fourLevelUpdatePro = new ArrayList<>()
-        ArrayList<Task> fiveLevelUpdatePro = new ArrayList<>()
+        allProject = project.rootProject.allprojects
         project.afterEvaluate {
-            File updateFile = getUpdateFile()
-            if (!updateFile.exists()) {
-                throw new GradleException('You need put the update.properties file in project root')
-            }
-            allProject = project.rootProject.allprojects
-            def props = new Properties()
-            props.load(new FileInputStream(updateFile))
-            def firstLevel = props.getProperty("FIRST_LEVEL")
-            def secondLevel = props.getProperty("SECOND_LEVEL")
-            def thirdLevel = props.getProperty("THIRD_LEVEL")
-            def fourLevel = props.getProperty("FOUR_LEVEL")
-            def fiveLevel = props.getProperty("FIVE_LEVEL")
-            initLevelProjectList(firstLevel, firstLevelUpdatePro)
-            initLevelProjectList(secondLevel, secondLevelUpdatePro)
-            initLevelProjectList(thirdLevel, thirdLevelUpdatePro)
-            initLevelProjectList(fourLevel, fourLevelUpdatePro)
-            initLevelProjectList(fiveLevel, fiveLevelUpdatePro)
-            if (!projectUploadDependsOn(fiveLevelUpdatePro, fourLevelUpdatePro)) {
-                if (!projectUploadDependsOn(fiveLevelUpdatePro, thirdLevelUpdatePro)) {
-                    if (!projectUploadDependsOn(fiveLevelUpdatePro, secondLevelUpdatePro)) {
-                        projectUploadDependsOn(fiveLevelUpdatePro, firstLevelUpdatePro)
-                    }
-                }
-            }
-            if (!projectUploadDependsOn(fourLevelUpdatePro, thirdLevelUpdatePro)) {
-                if (!projectUploadDependsOn(fourLevelUpdatePro, secondLevelUpdatePro)) {
-                    projectUploadDependsOn(fourLevelUpdatePro, firstLevelUpdatePro)
-                }
-            }
-            if (!projectUploadDependsOn(thirdLevelUpdatePro, secondLevelUpdatePro)) {
-                projectUploadDependsOn(thirdLevelUpdatePro, firstLevelUpdatePro)
-            }
-            projectUploadDependsOn(secondLevelUpdatePro, firstLevelUpdatePro)
-
-            Task uploadTask = project.task('uploadTask') << {
+            File configFile = checkConfigPropertyExist()
+            initUploadTasks(configFile)
+            uploadTask = project.task('uploadNexus') << {
                 println "Upload to Nexus Completed"
             }
-            if (!taskUploadDependsOn(uploadTask, fiveLevelUpdatePro)) {
-                if (!taskUploadDependsOn(uploadTask, fourLevelUpdatePro)) {
-                    if (!taskUploadDependsOn(uploadTask, thirdLevelUpdatePro)) {
-                        if (!taskUploadDependsOn(uploadTask, secondLevelUpdatePro)) {
-                            taskUploadDependsOn(uploadTask, firstLevelUpdatePro)
+            if (!uploadTaskQueue.empty) {
+                Task lastTask = uploadTaskQueue.last()
+                uploadTask.dependsOn lastTask
+            }
+        }
+    }
+
+    /**
+     * 初始化获取所有待上传project的uploadArchivesTask
+     * @return
+     */
+    def initUploadTasks(File configFile) {
+        uploadTaskQueue = new LinkedList<>()
+        def props = new Properties()
+        props.load(new FileInputStream(configFile))
+        Set<Map.Entry<Object, Object>> entrys = props.entrySet()
+        entrys.each { entry ->
+            String entryKey = entry.getKey().toString()
+            if (entryKey.contains(UPLOAD_KEY_PREFIX) && Boolean.valueOf(entry.getValue())) {
+                putProjectUploadTask(entryKey)
+            }
+        }
+    }
+
+    /**
+     * 根据config.properties中的key过滤出project name,然后获取其中的uploadArchivesTask
+     * @param propertyKey
+     */
+    def putProjectUploadTask(String propertyKey) {
+        String projectName = propertyKey.substring(UPLOAD_KEY_PREFIX.length() + 1)
+        if (null != allProject) {
+            allProject.each { project ->
+                if (project.name.equalsIgnoreCase(projectName)) {
+                    project.tasks.each { Task task ->
+                        if (task.name.contains("uploadArchives")) {
+                            //让队列内的task从前至后依次有依赖关系，可以串联执行
+                            if (!uploadTaskQueue.empty) {
+                                Task lastTask = uploadTaskQueue.last()
+                                task.dependsOn lastTask
+                            }
+                            uploadTaskQueue.offer(task)
                         }
                     }
                 }
             }
         }
     }
+    /**
+     * 校验配置文件是否存在
+     */
+    def checkConfigPropertyExist() {
+        File configFile = getUpdateFile()
+        if (!configFile.exists()) {
+            throw new GradleException('You need put the config.properties file in project root')
+        }
+        return configFile
+    }
 
+    /**
+     * 配置文件
+     * @return
+     */
     def getUpdateFile() {
         return new File("${mProject.rootDir}/${UPDATE_PROPERTY_NAME}")
     }
-
-    def initLevelProjectList(def levelProperty, ArrayList<Task> updateProjects) {
-        if (null != levelProperty && !levelProperty.empty) {
-            def propertyString = levelProperty.substring(1, levelProperty.length() - 1)
-            def propertyArray = propertyString.split(',').collect { it as String }
-            if (null != allProject) {
-                propertyArray.each { property ->
-                    allProject.each { project ->
-                        if (project.name.contains(property)) {
-                            project.tasks.each { Task task ->
-                                if (task.name.contains("uploadArchives")) {
-                                    updateProjects.add(task)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    static boolean projectUploadDependsOn(ArrayList<Task> afterProjects, ArrayList<Task> beforeProjects) {
-        if (null != beforeProjects && !beforeProjects.isEmpty() && null != afterProjects && !afterProjects.isEmpty()) {
-            afterProjects.each { afterProject ->
-                beforeProjects.each { beforeProject ->
-                    afterProject.dependsOn(beforeProject)
-                }
-            }
-            return true
-        } else {
-            return false
-        }
-    }
-
-    static boolean taskUploadDependsOn(Task uploadTask, ArrayList<Task> beforeProjects) {
-        if (null != beforeProjects && !beforeProjects.isEmpty()) {
-            beforeProjects.each { beforeProject ->
-                uploadTask.dependsOn(beforeProject)
-            }
-            return true
-        } else {
-            return false
-        }
-    }
-
 }

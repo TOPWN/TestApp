@@ -1,6 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
-apply from: '../bintray.gradle'
+//apply from: '../bintray.gradle'
 
 dependencies {
     compile gradleApi()
@@ -11,13 +11,13 @@ repositories {
     mavenCentral()
 }
 
-//group='com.dfire.danggui'
-//version='1.0.0'
-//
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            repository(url: uri('../repo'))
-//        }
-//    }
-//}
+group='com.dfire.danggui'
+version='1.0.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}
