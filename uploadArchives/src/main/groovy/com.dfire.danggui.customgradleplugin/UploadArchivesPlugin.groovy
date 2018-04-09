@@ -7,20 +7,35 @@ import org.gradle.api.Task
 
 public class UploadArchivesPlugin implements Plugin<Project> {
 
+    /**
+     * 待上传的版本配置文件
+     */
     public static final String UPDATE_PROPERTY_NAME = 'config.properties'
+    /**
+     * 配置文件中各个模块是否需要上传的开关key的前缀
+     */
     public static final String UPLOAD_KEY_PREFIX = 'UPLOAD_TO_NEXUS'
+    /**
+     * 配置文件中是否需要调用该上传task的总开关
+     */
+    public static final String UPLOAD_NEXUS = 'UPLOAD_NEXUS'
     Project mProject
     Set<Project> allProject
     Task uploadTask
     Queue<Task> uploadTaskQueue
+    File configFile
+    Properties props
 
     void apply(Project project) {
         mProject = project
         allProject = project.rootProject.allprojects
         project.afterEvaluate {
-            File configFile = checkConfigPropertyExist()
+            configFile = checkConfigPropertyExist()
             initUploadTasks(configFile)
             uploadTask = project.task('uploadNexus') << {
+                //所有任务执行完成后，修改config.properties文件中"UPLOAD_NEXUS"为false
+                props.setProperty(UPLOAD_NEXUS, "false")
+                props.store(new FileOutputStream(configFile), null)
                 println "Upload to Nexus Completed"
             }
             if (!uploadTaskQueue.empty) {
@@ -36,14 +51,14 @@ public class UploadArchivesPlugin implements Plugin<Project> {
      */
     def initUploadTasks(File configFile) {
         uploadTaskQueue = new LinkedList<>()
-        def props = new Properties()
+        //顺序读出properties文件中的key
+        props = new OrderedProperties()
         props.load(new FileInputStream(configFile))
-        Set<Map.Entry<Object, Object>> entrys = props.entrySet()
-        entrys.each { entry ->
-            String entryKey = entry.getKey().toString()
-            println "${entryKey}"
-            if (entryKey.contains(UPLOAD_KEY_PREFIX) && Boolean.valueOf(entry.getValue())) {
-                putProjectUploadTask(entryKey)
+        Set<String> keys = props.keySet()
+        keys.each { key ->
+            String value = props.getProperty(key)
+            if (key.contains(UPLOAD_KEY_PREFIX) && Boolean.valueOf(value)) {
+                putProjectUploadTask(key)
             }
         }
     }
@@ -59,6 +74,11 @@ public class UploadArchivesPlugin implements Plugin<Project> {
                 if (project.name.equalsIgnoreCase(projectName)) {
                     project.tasks.each { Task task ->
                         if (task.name.contains("uploadArchives")) {
+                            //任务执行完成后，修改config.properties文件中相应的key为false
+                            task.doLast {
+                                props.setProperty(propertyKey, "false")
+                                props.store(new FileOutputStream(configFile), null)
+                            }
                             //让队列内的task从前至后依次有依赖关系，可以串联执行
                             if (!uploadTaskQueue.empty) {
                                 Task lastTask = uploadTaskQueue.last()
