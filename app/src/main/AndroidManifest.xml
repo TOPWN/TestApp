@@ -12,6 +12,11 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
     <application
         android:name=".TestApplication"
         android:allowBackup="true"
@@ -98,6 +103,30 @@
             android:configChanges="orientation|keyboard"
             android:exported="false"
             android:label="StampViewActivity" />
+        <activity
+            android:name=".nfc.NFCActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="true"
+            android:label="NFC">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<data android:mimeType="text/plain" />-->
+            <!--</intent-filter>-->
+
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.action.TECH_DISCOVERED" />-->
+            <!--</intent-filter>-->
+
+            <!--<meta-data-->
+                <!--android:name="android.nfc.action.TECH_DISCOVERED"-->
+                <!--android:resource="@xml/nfc_tech_filter" />-->
+
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.action.TAG_DISCOVERED" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

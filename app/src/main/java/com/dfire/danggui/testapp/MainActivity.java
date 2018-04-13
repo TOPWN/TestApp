@@ -15,6 +15,7 @@ import com.dfire.danggui.testapp.editfoodnumview.TestEditFoodNumViewActivity;
 import com.dfire.danggui.testapp.eventbus.TestEventBusSubActivity;
 import com.dfire.danggui.testapp.flexboxlayout.TestFlexboxLayoutActivity;
 import com.dfire.danggui.testapp.glide.TestGlideActivity;
+import com.dfire.danggui.testapp.nfc.NFCActivity;
 import com.dfire.danggui.testapp.softkeyboard.TestSoftKeyboardActivity;
 import com.dfire.danggui.testapp.stateview.InjectActivity;
 import com.dfire.danggui.testapp.stickyrecyclerview.StickyRecyclerActivity;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonTestSoftKeybordActivity;
     @Bind(R.id.button_StampViewActivity)
     Button mButtonStampViewActivity;
+    @Bind(R.id.button_NFCActivity)
+    Button mButtonNFC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.btStickyRecycler, R.id.btCouponView, R.id.btTestEventBus, R.id.button_clipchildren
             , R.id.button_test_dfire_network, R.id.button_test_stateview, R.id.button_test_glide, R.id.button_flexboxlayout
             , R.id.button_EditFoodNumView, R.id.button_TestAnnotationActivity, R.id.button_TestSoftKeybordActivity
-            , R.id.button_StampViewActivity})
+            , R.id.button_StampViewActivity, R.id.button_NFCActivity})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btStickyRecycler:
@@ -105,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_StampViewActivity:
                 Intent intent12 = new Intent(this, StampViewActivity.class);
                 startActivity(intent12);
+                break;
+            case R.id.button_NFCActivity:
+                Intent intent13 = new Intent(this, NFCActivity.class);
+                startActivity(intent13);
                 break;
         }
     }
