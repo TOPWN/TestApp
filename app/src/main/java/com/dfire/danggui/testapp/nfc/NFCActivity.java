@@ -20,15 +20,17 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.dfire.danggui.testapp.R;
 import com.orhanobut.logger.Logger;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author DangGui
@@ -36,7 +38,8 @@ import java.util.List;
  */
 public class NFCActivity extends AppCompatActivity {
     EditText mEditText;
-    private List<Tag> mTags = new ArrayList<>();
+    Button readBt, writeBt;
+    private boolean isRead = true;
     private IntentFilter[] intentFiltersArray;
     private NfcAdapter mAdapter;
     private PendingIntent pendingIntent;
@@ -48,6 +51,8 @@ public class NFCActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
         mEditText = (EditText) findViewById(R.id.edit_nfc);
+        readBt = (Button) findViewById(R.id.button_read);
+        writeBt = (Button) findViewById(R.id.button_write);
         mAdapter = NfcAdapter.getDefaultAdapter(this);
         pendingIntent = PendingIntent.getActivity(
                 this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -75,6 +80,18 @@ public class NFCActivity extends AppCompatActivity {
                 new String[]{MifareClassic.class.getName()},
                 new String[]{MifareUltralight.class.getName()}
         };
+        readBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isRead = true;
+            }
+        });
+        writeBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isRead = false;
+            }
+        });
     }
 
     public void onPause() {
@@ -96,6 +113,7 @@ public class NFCActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         if (intent != null) {
             resolveIntent(intent);
+//            readAndWriteTag(intent);
         }
     }
 
@@ -115,7 +133,7 @@ public class NFCActivity extends AppCompatActivity {
                 // Unknown tag type
                 byte[] id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
                 if (id.length != 0) {
-                    mId = String.valueOf(toDec(id));
+                    mId = String.valueOf(toHex(id));
                 } else {
                     Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                     mId = dumpTagId(tag);
@@ -124,6 +142,16 @@ public class NFCActivity extends AppCompatActivity {
         }
         Logger.d("id-->" + mId);
         mEditText.setText(mId);
+    }
+
+    private void readAndWriteTag(Intent intent) {
+        Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        if (isRead) {
+            String tagMsg = readTag(tag);
+            mEditText.setText(tagMsg);
+        } else {
+            writeTag(tag, mEditText.getText().toString());
+        }
     }
 
     private String parseIdFromTextRecord(NdefRecord[] records) {
@@ -164,10 +192,24 @@ public class NFCActivity extends AppCompatActivity {
         if (null != tag) {
             byte[] id = tag.getId();
             if (id.length != 0) {
-                return String.valueOf(toDec(id));
+                return String.valueOf(toHex(id));
             }
         }
         return null;
+    }
+
+    private String toHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = bytes.length - 1; i >= 0; --i) {
+            int b = bytes[i] & 0xff;
+            if (b < 0x10)
+                sb.append('0');
+            sb.append(Integer.toHexString(b));
+            if (i > 0) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
     }
 
     private long toDec(byte[] bytes) {
@@ -179,5 +221,40 @@ public class NFCActivity extends AppCompatActivity {
             factor *= 256l;
         }
         return result;
+    }
+
+    public void writeTag(Tag tag, String tagText) {
+        MifareUltralight ultralight = MifareUltralight.get(tag);
+        try {
+            ultralight.connect();
+            ultralight.writePage(4, "abcd".getBytes(Charset.forName("US-ASCII")));
+            ultralight.writePage(5, "efgh".getBytes(Charset.forName("US-ASCII")));
+            ultralight.writePage(6, "ijkl".getBytes(Charset.forName("US-ASCII")));
+            ultralight.writePage(7, "mnop".getBytes(Charset.forName("US-ASCII")));
+        } catch (IOException e) {
+        } finally {
+            try {
+                ultralight.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+
+    public String readTag(Tag tag) {
+        MifareUltralight mifare = MifareUltralight.get(tag);
+        try {
+            mifare.connect();
+            byte[] payload = mifare.readPages(4);
+            return new String(payload, Charset.forName("US-ASCII"));
+        } catch (IOException e) {
+        } finally {
+            if (mifare != null) {
+                try {
+                    mifare.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return null;
     }
 }
