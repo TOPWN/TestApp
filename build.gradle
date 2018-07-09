@@ -6,6 +6,7 @@ buildscript {
         maven {
             url uri('../TestApp/repo')
         }
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
@@ -19,6 +20,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url 'https://jitpack.io' }
+        google()
     }
 }
 
@@ -26,11 +28,11 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ext {
-    compileSdkVersion = 23
-    buildToolsVersion = '25.0.1'
-    supportLibsVersion = '25.3.1'
-    targetSdkVersion = 22
-    minSdkVersion = 14
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.3'
+    supportLibsVersion = '27.1.1'
+    targetSdkVersion = 25
+    minSdkVersion = 16
     versionCode = 13
     versionName = "0.4.3"
 }

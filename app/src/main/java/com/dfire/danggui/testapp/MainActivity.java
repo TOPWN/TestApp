@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.dfire.danggui.testapp.annotation.TestAnnotationActivity;
+import com.dfire.danggui.testapp.cardview.CardViewActivity;
 import com.dfire.danggui.testapp.clipchildren.TestClipChildrenActivity;
 import com.dfire.danggui.testapp.couponview.TestCouponViewActivity;
 import com.dfire.danggui.testapp.customview.StampViewActivity;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.btStickyRecycler, R.id.btCouponView, R.id.btTestEventBus, R.id.button_clipchildren
             , R.id.button_test_dfire_network, R.id.button_test_stateview, R.id.button_test_glide, R.id.button_flexboxlayout
             , R.id.button_EditFoodNumView, R.id.button_TestAnnotationActivity, R.id.button_TestSoftKeybordActivity
-            , R.id.button_StampViewActivity, R.id.button_NFCActivity})
+            , R.id.button_StampViewActivity, R.id.button_NFCActivity, R.id.button_CardviewActivity})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btStickyRecycler:
@@ -112,6 +113,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_NFCActivity:
                 Intent intent13 = new Intent(this, NFCActivity.class);
                 startActivity(intent13);
+                break;
+            case R.id.button_CardviewActivity:
+                Intent intent14 = new Intent(this, CardViewActivity.class);
+                startActivity(intent14);
                 break;
         }
     }

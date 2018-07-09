@@ -1,1 +1,1 @@
-include ':app', ':lib.module', ':annotation', ':compiler', ':uploadArchives'
+include ':app', ':annotation', ':compiler', ':uploadArchives'

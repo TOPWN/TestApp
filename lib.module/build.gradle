@@ -25,12 +25,12 @@ android {
     publishNonDefault true
 
     productFlavors {
-        dev {
-            buildConfigField("String", "CLOUD_CASH_API", properties.getProperty("dev_cloudcash_api"))
-        }
-        rel {
-            buildConfigField("String", "CLOUD_CASH_API", properties.getProperty("release_cloudcash_api"))
-        }
+//        dev {
+//            buildConfigField("String", "CLOUD_CASH_API", properties.getProperty("dev_cloudcash_api"))
+//        }
+//        rel {
+//            buildConfigField("String", "CLOUD_CASH_API", properties.getProperty("release_cloudcash_api"))
+//        }
     }
 }
 
@@ -39,6 +39,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:27.1.1'
     testCompile 'junit:junit:4.12'
 }

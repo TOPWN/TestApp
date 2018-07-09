@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.dfire.danggui.testapp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dfire.danggui.testapp">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -109,24 +109,29 @@
             android:exported="true"
             android:label="NFC">
             <!--<intent-filter>-->
-                <!--<action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-                <!--<data android:mimeType="text/plain" />-->
+            <!--<action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+            <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--<data android:mimeType="text/plain" />-->
             <!--</intent-filter>-->
 
             <!--<intent-filter>-->
-                <!--<action android:name="android.nfc.action.TECH_DISCOVERED" />-->
+            <!--<action android:name="android.nfc.action.TECH_DISCOVERED" />-->
             <!--</intent-filter>-->
 
             <!--<meta-data-->
-                <!--android:name="android.nfc.action.TECH_DISCOVERED"-->
-                <!--android:resource="@xml/nfc_tech_filter" />-->
+            <!--android:name="android.nfc.action.TECH_DISCOVERED"-->
+            <!--android:resource="@xml/nfc_tech_filter" />-->
 
             <!--<intent-filter>-->
-                <!--<action android:name="android.nfc.action.TAG_DISCOVERED" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--<action android:name="android.nfc.action.TAG_DISCOVERED" />-->
+            <!--<category android:name="android.intent.category.DEFAULT" />-->
             <!--</intent-filter>-->
         </activity>
+        <activity
+            android:name=".cardview.CardViewActivity"
+            android:configChanges="orientation|keyboard"
+            android:exported="true"
+            android:label="CardView" />
     </application>
 
 </manifest>
